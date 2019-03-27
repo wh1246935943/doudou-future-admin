@@ -1,11 +1,10 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div class="main-page">
+    app
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'app',
   components: {
@@ -15,7 +14,8 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
+.main-page {
   height: 100%;
+  background-color: #f3f3f3;
 }
 </style>
