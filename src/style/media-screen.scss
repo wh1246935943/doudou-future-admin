@@ -1,0 +1,22 @@
+@media screen and (min-width: 1200px){
+  .dashboard-btn i{
+    display: none;
+  }
+  .header .container{
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .dashboard-btn i{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px){
+  // ...
+}
+
+@media screen and (max-width: 768px){
+  // ...
+}
