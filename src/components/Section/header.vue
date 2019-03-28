@@ -1,8 +1,8 @@
 <template>
   <header class="header">
     <div class="container">
-      <div class="dashboard-btn">
-        <i class="icon-navicon"></i>
+      <div class="tabList-caret">
+        <i @click="$emit('open-tabList')" class="icon-navicon"></i>
       </div>
       <div class="logo"></div>
       <div class="user-entrance">
@@ -31,7 +31,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .dashboard-btn .icon-navicon{
+    .tabList-caret .icon-navicon{
       cursor: pointer;
     }
     .logo{
