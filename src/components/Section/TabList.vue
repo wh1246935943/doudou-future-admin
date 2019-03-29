@@ -33,7 +33,8 @@ export default {
   methods: {
     selectItem(path, index) {
       this.activeIndex = index;
-      this.$router.push({path})
+      this.$router.push({path});
+      this.closeTabList();
     },
     closeTabList() {
       let el = document.querySelector('.tab-list');
@@ -51,6 +52,7 @@ export default {
   color: #fff;
   font-size: 14px;
   top: 0;
+  z-index: 999;
   .close-bg{
     position: fixed;
     width: 100%;

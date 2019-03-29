@@ -4,7 +4,7 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 import Main from './../components/Main/index.vue';
-import Agent from './../components/RoutePages/Agent.vue';
+import Agent from './../components/RoutePages/Agent/Agent.vue';
 import DashBoard from './../components/RoutePages/DashBoard.vue';
 import MyCruise from './../components/RoutePages/MyCruise.vue';
 import Help from './../components/RoutePages/Help.vue';

@@ -59,6 +59,7 @@ export default {
     bottom: 0;
     right: 0;
     left: 0;
+    z-index: 999;
   }
   .dropdown-menu{
     top: 139%;
@@ -69,6 +70,7 @@ export default {
     background: #fff;
     padding: 10px 0;
     box-shadow: 0px 0px 6px rgba(136,136,136, 0.39);
+    z-index: 999;
     .menu-item{
       width: 100%;
       height: 32px;

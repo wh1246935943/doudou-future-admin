@@ -1,12 +1,28 @@
-@media screen and (min-width: 1200px){
-  .tabList-caret i{
-    display: none;
+@media screen and (min-width: 768px){
+  .top-card .card-types{
+    height: 130px;
+    .type{
+      .name{
+        text-align: start
+      }
+      .quantity{
+        text-align: end
+      }
+    }
   }
-  .header .container{
-    padding: 0;
-  }
-  .main-container{
-    width: 1200px !important;
+  .search-bar{
+    .switch-type{
+      padding-right: 0;
+    }
+    .search-padding{
+      padding-left: 0;
+    }
+    // .search-box{
+    //   width: 100%;
+    //   .search-input{
+    //     width: 170px;
+    //   }
+    // }
   }
 }
 
@@ -20,14 +36,68 @@
       display: none;
     }
   }
+  .search-bar{
+    .switch-type{
+      padding-right: 5px;
+    }
+    .search-box{
+      width: 100%;
+      .search-input{
+        width: 170px;
+      }
+    }
+  }
 }
 
-@media screen and (min-width: 768px){
-  // ...
+@media screen and (min-width: 1200px){
+  .tabList-caret i{
+    display: none;
+  }
+  .header .container{
+    padding: 0;
+  }
+  .main-container{
+    width: 1200px !important;
+  }
+  .top-card .card-types{
+    height: 130px;
+    .type{
+      height: 100%;
+      line-height: calc(100% - -55px / 2);
+      .name{
+        text-align: center
+      }
+      .quantity{
+        text-align: center
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 768px){
-  // ...
+  .top-card .card-types {
+    height: 90px;
+    .type{
+      height: 100%;
+      text-align: center;
+      align-self: center;
+      line-height: calc(100% - -20px / 2);
+    }
+  }
+  .search-bar{
+    .switch-type{
+      padding-right: 5px;
+    }
+    .search-padding{
+      padding-left: 5px;
+    }
+    .search-box{
+      width: 100%;
+      .search-input{
+        width: 100%;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1024px){
@@ -40,5 +110,10 @@
   }
   .footer{
     display: none;
+  }
+  .search-bar .search-box{
+    .switch-view{
+      display: none;
+    }
   }
 }
