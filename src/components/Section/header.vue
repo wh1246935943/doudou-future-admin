@@ -5,17 +5,42 @@
         <i @click="$emit('open-tabList')" class="icon-navicon"></i>
       </div>
       <div class="logo"></div>
-      <div class="user-entrance">
-        <div class="avatar"></div>
-        <i class="icon-angle-down"></i>
-      </div>
+      <drop-down
+        isIcon
+        :isMenu="isMenu"
+        :menuData="menuData"
+        @close="isMenu = false"
+        @select-item="selectItem"
+      >
+        <div
+          class="user-entrance"
+          @click="openDropdown"
+        >
+          <div class="avatar"></div>
+          <i class="icon-angle-down"></i>
+        </div>
+      </drop-down>
     </div>
   </header>
 </template>
 <script>
 export default {
   data() {
-    return {}
+    return {
+      isMenu: false,
+      menuData: [
+        {name: 'Profile', icon: 'icon-id-card'},
+        {name: 'Sign Out', icon: 'icon-sign-in'}
+      ]
+    }
+  },
+  methods: {
+    openDropdown() {
+      this.isMenu = !this.isMenu
+    },
+    selectItem() { // item, index
+      // console.log('item:::index:::', item, index);
+    }
   }
 }
 </script>
@@ -42,6 +67,7 @@ export default {
     .user-entrance{
       display: flex;
       // justify-items: center;
+      position: relative;
       .avatar{
         width: 40px;
         height: 40px;
@@ -53,6 +79,11 @@ export default {
         align-self: center;
         margin-left: 10px;
         cursor: pointer;
+      }
+      .menu-position{
+        position: absolute;
+        top: 56px;
+        left: -25px;
       }
     }
   }
