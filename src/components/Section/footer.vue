@@ -15,6 +15,7 @@ export default {
   background: #fff;
   text-align: center;
   line-height: 30px;
+  box-shadow: 0px 1px 7px 3px rgba(0, 0, 0, 0.2);
   span{
     font-weight: 700;
   }

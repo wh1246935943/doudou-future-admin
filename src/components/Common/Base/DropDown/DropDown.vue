@@ -53,6 +53,7 @@ export default {
 <style lang="scss">
 .drop-down{
   position: relative;
+  user-select: none;
   .background{
     position: fixed;
     top: 0;

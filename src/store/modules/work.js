@@ -1,10 +1,10 @@
 const homeWork = {
   state: {
-    list: Object
+    agents: Object
   },
   mutations: {
-    SET_LIST(state, data) {
-      state.list = data;
+    SET_AGENTS(state, data) {
+      state.agents = data;
     },
   }
 };

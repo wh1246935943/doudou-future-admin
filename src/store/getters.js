@@ -1,5 +1,5 @@
 const getters = {
-  data_list: state => state.work.list
+  agents_list: state => state.work.agents
 }
 
 export default getters

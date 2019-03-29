@@ -4,7 +4,7 @@
     <Header @open-tabList="openTabList"></Header>
     <!-- 正文内容/路由 -->
     <div class="main-container">
-      <!-- 左侧面板 -->
+      <!-- 左侧选项面板 -->
       <tab-list></tab-list>
       <div class="router-view-area">
         <router-view></router-view>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Header from './../Section/Header.vue';
 import TabList from './../Section/TabList';
 import Footer from './../Section/Footer.vue';
@@ -30,8 +31,12 @@ export default {
       isTabList: false
     }
   },
+  computed: {
+    ...mapGetters(['agents_list'])
+  },
   created() {
-    this.$router.push({path: '/Agent'})
+    this.$router.push({path: '/Agent'});
+    this.getAgents();
   },
   methods: {
     openTabList() {
@@ -46,6 +51,18 @@ export default {
         el.style.display = '';
         window.onresize = null
       } 
+    },
+    getAgents() {
+      this.$Service.queryAgents(null, this._queryAgentHandler)
+    },
+    _queryAgentHandler(resp) {
+      console.log('queryAgent callback:::', resp);
+      if (resp.status !== 200) return;
+      let agentsObg = {};
+      resp.data.agents.forEach(element => {
+        this.$set(agentsObg, element.id, element);
+      });
+      this.$store.commit('SET_AGENTS', agentsObg)
     }
   }
 }
@@ -64,10 +81,10 @@ export default {
     margin: 0 auto;
     width: 100%;
     .router-view-area{
+      height: 100%;
       flex: 1;
       overflow: hidden;
       overflow-y: auto;
-      padding: 15px;
     }
   }
 }

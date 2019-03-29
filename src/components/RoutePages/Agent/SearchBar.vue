@@ -1,5 +1,6 @@
 <template>
   <div class="search-bar row">
+    <!-- 选择当前列表展示数据类型 -->
     <div class="switch-type col-sm-5 col-xs-12">
       <div
         class="type"
@@ -10,11 +11,13 @@
       >{{item}}</div>
     </div>
     <div class="search-padding col-sm-7 col-xs-12">
+      <!-- 搜索 -->
       <div class="search-box">
         <div class="search-input">
           <i class="icon-search"></i>
           <input type="text">
         </div>
+        <!-- 切换列表视图样式按钮 -->
         <div class="switch-view">
           <i class="icon-th-card"></i>
           <i class="icon-th-list"></i>
@@ -40,9 +43,9 @@ export default {
 </script>
 <style lang="scss">
 .search-bar{
-  height: 50px;
+  margin-bottom: 10px;
   .switch-type{
-    height: 100%;
+    height: 50px;
     display: flex;
     .type{
       width: 33.33%;
@@ -64,7 +67,7 @@ export default {
     }
   }
   .search-padding{
-    height: 100%;
+    height: 50px;
   }
   .search-box{
     width: 100%;

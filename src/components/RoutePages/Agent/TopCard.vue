@@ -4,22 +4,22 @@
       <div class="card-item building">
         <i class="bg-icon icon-cog"></i>
         <div class="name">Building</div>
-        <div class="quantity">3</div>
+        <div class="quantity">{{statusObj.building&&statusObj.building.length||0}}</div>
       </div>
     </div>
     <div class="col-sm-4 col-xs-6">
       <div class="card-item idle">
         <i class="bg-icon icon-coffee"></i>
         <div class="name">Idle</div>
-        <div class="quantity">5</div>
+        <div class="quantity">{{statusObj.idle&&statusObj.idle.length||0}}</div>
       </div>
     </div>
     <div class="col-sm-4 col-xs-12">
       <div class="card-types row">
         <div
           class="type col-lg-4 col-md-12 col-sm-12 col-xs-4"
-          v-for="(item, index) in typeList"
-          :key="index"
+          v-for="(item, key) in typeObj"
+          :key="key"
         >
           <div class="name col-lg-12 col-md-6 col-sm-6 col-xs-12">{{item.type}}</div>
           <div class="quantity col-lg-12 col-md-6 col-sm-6 col-xs-12">{{item.quantity}}</div>
@@ -29,20 +29,40 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  data() {
-    return {
-      typeList: [
-        {type: 'ALL', quantity: '11'},
-        {type: 'PHYSICAL', quantity: '5'},
-        {type: 'VIRTUAL', quantity: '6'}
-      ]
+  computed: {
+    ...mapGetters(['agents_list']),
+    statusObj() {
+      let status = {};
+      Object.values(this.agents_list).forEach(element => {
+        if (status.hasOwnProperty(element.status)) {
+          status[element.status].push(element);
+          return
+        }
+        this.$set(status, element.status, [element])
+      });
+      return status
+    },
+    typeObj() {
+      let typeObj = {
+        all: {type: 'ALL', quantity: 0},
+        physical: {type: 'PHYSICAL', quantity: 0},
+        virtual: {type: 'VIRTUAL', quantity: 0}
+      };
+      if (!this.agents_list) return typeObj;
+      Object.values(this.agents_list).forEach(element => {
+        typeObj[element.type].quantity++
+      });
+      typeObj.all.quantity = Object.values(this.agents_list).length;
+      return typeObj
     }
   }
 }
 </script>
 <style lang="scss">
 .top-card{
+  user-select: none;
   .card-item{
     width: 100%;
     height: 130px;
