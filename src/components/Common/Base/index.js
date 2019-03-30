@@ -1,4 +1,4 @@
-import TestAlert from './Alert';
+import TestAlert from './Alert1';
 import TestToast from './Toast';
 import Modal from './modal';
 import TestDropdown from './DropDown';

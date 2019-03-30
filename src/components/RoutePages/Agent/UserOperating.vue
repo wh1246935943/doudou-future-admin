@@ -3,6 +3,7 @@
     <div class="col-sm-10 col-xs-12">
       <div class="resources">
         <div class="add-os">
+          
           <test-button primary square icon="icon-plus" @click="addOs"></test-button>
         </div>
         <div class="os-list">
