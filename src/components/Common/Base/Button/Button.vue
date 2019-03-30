@@ -79,6 +79,7 @@ export default {
   cursor: pointer;
   padding: 5px 10px;
   position: relative;
+  font-family: 'Avenir', 'Helvetica', 'Arial', 'sans-serif';
   .icon-margin{
     display: inline-block;
     width: 5px;

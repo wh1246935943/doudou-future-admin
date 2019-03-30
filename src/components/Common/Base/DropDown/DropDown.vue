@@ -109,7 +109,6 @@ export default {
       let str = this.inputValue.replace(/^\s*|\s*$/g, '');
       let reg = /[\s]/;
       if (reg.test(str)) {
-        this.isWarning = true;
         this.tipMsgDisplay = 'Does not contain special characters';
         return
       }

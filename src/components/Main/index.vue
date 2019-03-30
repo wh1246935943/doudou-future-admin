@@ -80,6 +80,7 @@ export default {
     display: flex;
     margin: 0 auto;
     width: 100%;
+    overflow: hidden;
     .router-view-area{
       height: 100%;
       flex: 1;
