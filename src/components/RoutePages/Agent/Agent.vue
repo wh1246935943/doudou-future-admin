@@ -1,6 +1,6 @@
 <template>
   <div class="agent">
-    <!-- 左侧正文顶部卡片 -->
+    <!-- 右边侧正文顶部卡片 -->
     <top-card></top-card>
     <!-- 搜做/选择类型展示/切换展示样式操作条 -->
     <search-bar></search-bar>
@@ -20,6 +20,11 @@ import TopCard from './TopCard.vue';
 import SearchBar from './SearchBar.vue';
 import ListItem from './ListItem.vue';
 export default {
+  data() {
+    return {
+      listDataType: '',
+    }
+  },
   components: {
     TopCard,
     SearchBar,

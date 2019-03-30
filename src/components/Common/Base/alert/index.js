@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Alert from './alert.vue'
+import TsetAlert from './Alert.vue'
 
 function open(propsData) {
-  const AlertComponent = Vue.extend(Alert);
+  const AlertComponent = Vue.extend(TsetAlert);
   return new AlertComponent({
     el: document.createElement('div'),
     propsData
@@ -25,7 +25,3 @@ export default {
     return open(propsData)
   }
 }
-
-// Alert.install = (Vue, options = {}) => {
-//   Vue.prototype.$alert = Alert
-// }

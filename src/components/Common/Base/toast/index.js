@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Toast from './toast.vue'
+import TestToast from './TestToast.vue'
 
 function open(propsData) {
-  const ToastComponent = Vue.extend(Toast);
+  const ToastComponent = Vue.extend(TestToast);
   return new ToastComponent({
     el: document.createElement('div'),
     propsData
@@ -11,20 +11,8 @@ function open(propsData) {
 
 export default {
   tip(params) {
-    const defaultParam = {
-      type: 'toast-tip'
-    };
+    const defaultParam = {};
     const propsData = Object.assign(defaultParam, params)
     return open(propsData)
-  },
-  loading(params) {
-    const defaultParam = {
-      type: 'toast-loading'
-    };
-    const propsData = Object.assign(defaultParam, params)
-    return open(propsData)
-  },
-  closeLoading() {
-    // ...
   }
 }

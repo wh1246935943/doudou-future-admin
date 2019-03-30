@@ -5,7 +5,7 @@
         <i @click="$emit('open-tabList')" class="icon-navicon"></i>
       </div>
       <div class="logo"></div>
-      <drop-down
+      <test-dropdown
         isIcon
         :isMenu="isMenu"
         :menuData="menuData"
@@ -19,7 +19,7 @@
           <div class="avatar"></div>
           <i class="icon-angle-down"></i>
         </div>
-      </drop-down>
+      </test-dropdown>
     </div>
   </header>
 </template>

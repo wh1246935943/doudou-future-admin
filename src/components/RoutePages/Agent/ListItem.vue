@@ -36,26 +36,41 @@
           </div>
         </div>
       </div>
-      <div class="resources row"></div>
+      <user-operating :item="item"></user-operating>
     </div>
   </div>
 </template>
 <script>
-import {getOsIcon, imgError} from './../../Common/util.js'
+import {getOsIcon, imgError} from './../../Common/util.js';
+import UserOperating from './UserOperating.vue'
 export default {
+  components: {
+    UserOperating
+  },
   data() {
     return {
       statusColor: {
         building: '#FF9A2A',
         idle: '#7FBC39'
-      }
+      },
+      // infos: [
+      //   {key: 'name', value: '',class: 'col-sm-5', icon: 'icon-desktop'},
+      //   {key: 'status', value: '',class: 'col-sm-1 info-status', icon: 'icon-info'},
+      //   {key: 'ip', value: '',class: 'col-sm-3', icon: ''},
+      //   {key: 'location', value: '',class: 'col-sm-3', icon: ''}
+      // ]
     }
   },
   props: {
     item: Object
   },
   computed: {
-    // ...
+    // listRenderData() {
+    //   this.infos.forEach((e) =>{
+    //     e[e.value] = this.item[e.key]
+    //   })
+    //   return this.infos
+    // }
   },
   methods: {
     getOsIcon(os) {

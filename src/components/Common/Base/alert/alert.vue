@@ -1,11 +1,15 @@
 <template>
-  <div class="alert" v-if="showAlert">
+  <div
+    class="test-alert"
+    v-if="isTestAlert"
+    @click.self="isTestAlert = false"
+  >
     <div class="warp">
-      <header class="head">
+      <header class="test-alert-head">
         <p>{{title}}</p>
-        <i class="iconfont icon-guanbi" @click="showAlert=false"></i>
+        <i class="iconfont icon-guanbi" @click="isTestAlert=false"></i>
       </header>
-      <section class="section">
+      <section class="test-alert-section">
         <div v-if="type==='prompt'" class="input">
           <input
             type="text"
@@ -16,23 +20,19 @@
         </div>
         <div v-else-if="type==='confirm'" class="info">{{confirmText}}</div>
       </section>
-      <footer class="footer">
-        <button @click="cancel">取消</button>
-        <button
-          :disabled="!isProper"
-          class="confirm"
-          @click="confirm"
-          :class="{'disabled':!isProper}"
-        >确认</button>
+      <footer class="test-alert-footer">
+        <test-button primary @click="confirm">Confirm</test-button>
+        <test-button cancel @click="cancel">Cancel</test-button>
       </footer>
     </div>
   </div>
 </template>
 <script>
 export default {
+  name: 'TestAlert',
   data() {
     return {
-      showAlert: false,
+      isTestAlert: false,
       inputValue: ''
     }
   },
@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     close() {
-      this.showAlert = false;
+      this.isTestAlert = false;
     },
     cancel() {
       this.close();
@@ -80,12 +80,12 @@ export default {
     document.body.appendChild(this.$el);
   },
   mounted() {
-    this.showAlert = true;
+    this.isTestAlert = true;
   }
 }
 </script>
 <style lang="scss" scoped>
-.alert{
+.test-alert{
   position: fixed;
   top: 0;
   left: 0;
@@ -101,15 +101,13 @@ export default {
     display: flex;
     flex-direction: column;
     min-width: 270px;
-    border-radius: 6px;
+    border: 1px solid #00B4CF;
     background: #fff;
     overflow: hidden;
-    .head{
+    .test-alert-head{
       display: flex;
       justify-content: space-between;
       height: 30px;
-      background: #1296db;
-      color: #fff;
       line-height: 30px;
       padding: 0 10px;
       p{
@@ -119,7 +117,7 @@ export default {
         cursor: pointer;
       }
     }
-    .section{
+    .test-alert-section{
       .input{
         padding: 10px 0;
         display: flex;
@@ -137,23 +135,12 @@ export default {
         padding: 20px 10px;
       }
     }
-    .footer{
+    .test-alert-footer{
       padding: 0 0 15px 0;
       display: flex;
-      justify-content: flex-end;
-      button{
-        width: 70px;
-        height: 25px;
-        border: none;
-        outline: none;
-        color: #424e67;
-        border-radius: 4px;
-        margin-right: 20px;
-        cursor: pointer;
-        color: #fff;
-      }
-      .confirm{
-        background: #1296db;
+      justify-content: flex-start;
+      .button{
+        margin-left: 10px;
       }
     }
   }

@@ -1,11 +1,13 @@
-import Alert from './alert';
-import Toast from './toast';
+import TestAlert from './Alert';
+import TestToast from './Toast';
 import Modal from './modal';
-import DropDown from './DropDown'
+import TestDropdown from './DropDown';
+import TestButton from './Button';
 
 const baseUi = {
   Modal,
-  DropDown
+  TestDropdown,
+  TestButton
 };
 
 baseUi.install = (Vue) => {
@@ -17,8 +19,8 @@ baseUi.install = (Vue) => {
     }
   }
 
-  Vue.prototype.$alert = Alert;
-  Vue.prototype.$toast = Toast
+  Vue.prototype.$alert = TestAlert;
+  Vue.prototype.$toast = TestToast
 };
 
 export default baseUi
