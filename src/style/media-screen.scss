@@ -16,6 +16,25 @@
   flex-direction: column-reverse;
 }
 
+// 添加os输入弹框样式
+.add-os-prompt{
+  background: rgba(0,0,0,0.6)!important;
+  .warp{
+    width: 100%;
+    .input input{
+      width: 100%;
+      margin: 0 10px;
+    }
+    .is-cancel{
+      display: none;
+    }
+    .is-primary{
+      width: 100%;
+      margin: 10px;
+    }
+  }
+}
+
 @media screen and (min-width: 768px){
   .top-card .card-types{
     height: 130px;
@@ -47,6 +66,21 @@
   .search-bar{
     display: block;
   }
+
+  // 添加os输入弹框样式
+  .add-os-prompt{
+    .warp{
+      width: 570px;
+      box-shadow: 0 3px 5px rgba(0,0,0,.3);
+      .is-cancel{
+        display: inline-flex;
+      }
+      .is-primary{
+        width: auto;
+        margin: 0;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1024px){
@@ -58,6 +92,10 @@
     .close-bg{
       display: none;
     }
+  }
+  // 添加os输入弹框样式
+  .add-os-prompt{
+    background: rgba(0,0,0,0)!important;
   }
 }
 

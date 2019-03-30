@@ -1,13 +1,13 @@
 <template>
   <div
-    class="test-alert"
+    :class="['test-alert', className]"
     v-if="isTestAlert"
     @click.self="isTestAlert = false"
   >
     <div class="warp">
       <header class="test-alert-head">
         <p>{{title}}</p>
-        <i class="iconfont icon-guanbi" @click="isTestAlert=false"></i>
+        <i class="icon-close" @click="isTestAlert=false"></i>
       </header>
       <section class="test-alert-section">
         <div v-if="type==='prompt'" class="input">
@@ -21,8 +21,8 @@
         <div v-else-if="type==='confirm'" class="info">{{confirmText}}</div>
       </section>
       <footer class="test-alert-footer">
-        <test-button primary @click="confirm">Confirm</test-button>
-        <test-button cancel @click="cancel">Cancel</test-button>
+        <test-button primary @click="confirm">{{buttonConfirmTxt}}</test-button>
+        <test-button cancel @click="cancel">{{buttonCancelTxt}}</test-button>
       </footer>
     </div>
   </div>
@@ -39,7 +39,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '提示'
+      default: 'Tip'
     },
     inputAttrs: {
       type: Object,
@@ -47,7 +47,19 @@ export default {
     },
     confirmText: {
       type: String,
-      default: '确认删除'
+      default: ''
+    },
+    buttonConfirmTxt: {
+      type: String,
+      default: 'Confirm'
+    },
+    buttonCancelTxt: {
+      type: String,
+      default: 'Cancel'
+    },
+    className: {
+      type: String,
+      default: ''
     },
     type: String,
     onConfirm: {
@@ -84,7 +96,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .test-alert{
   position: fixed;
   top: 0;
@@ -107,6 +119,7 @@ export default {
     .test-alert-head{
       display: flex;
       justify-content: space-between;
+      align-items: center;
       height: 30px;
       line-height: 30px;
       padding: 0 10px;
@@ -123,7 +136,7 @@ export default {
         display: flex;
         justify-content: center;
         input{
-          width: 86%;
+          width: calc(100% - 10px);
           height: 35px;
           outline: none;
           border: none;

@@ -32,7 +32,20 @@ export default {
   methods: {
     // resources字段中添加os
     addOs() {
-      // ...
+      this.$alert.prompt({
+        title: 'Separate muliple resource withcommas',
+        buttonConfirmTxt: 'Add Resource',
+        className: 'add-os-prompt',
+        inputAttrs: {
+          placeholder: 'input value',
+          maxlength: 10000
+        },
+        onConfirm: val => {
+          console.log('add os:::', val);
+          // this.$store.commit('SET_AGENTS', {flag: 1, id: this.item.id, index: index});
+          // this.$toast.tip({message: 'delete success'})
+        }
+      })
     },
     // 删除resources字段中选中的os
     buttonIconClick(index) {
