@@ -3,8 +3,23 @@
     <div class="col-sm-10 col-xs-12">
       <div class="resources">
         <div class="add-os">
-          
-          <test-button primary square icon="icon-plus" @click="addOs"></test-button>
+          <test-dropdown
+            :isInputPromp="isInputPromp"
+            title="Separate muliple resource withcommas"
+            placeholder="input value"
+            buttonConfirmTxt="Add Resource"
+            className="add-os-prompt"
+            :tipMsg="tipMsg"
+            @close="isInputPromp = false"
+            @dorpdown-inputpromp="dorpdownInputConfirm"
+          >
+            <test-button
+              primary
+              square
+              icon="icon-plus"
+              @click="isInputPromp=true"
+            ></test-button>
+          </test-dropdown>
         </div>
         <div class="os-list">
           <test-button
@@ -27,26 +42,45 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      isInputPromp: false,
+      tipMsg: ''
+    }
+  },
   props: {
     item: Object
   },
   methods: {
     // resources字段中添加os
-    addOs() {
-      this.$alert.prompt({
-        title: 'Separate muliple resource withcommas',
-        buttonConfirmTxt: 'Add Resource',
-        className: 'add-os-prompt',
-        inputAttrs: {
-          placeholder: 'input value',
-          maxlength: 10000
-        },
-        onConfirm: val => {
-          console.log('add os:::', val);
-          // this.$store.commit('SET_AGENTS', {flag: 1, id: this.item.id, index: index});
-          // this.$toast.tip({message: 'delete success'})
+    dorpdownInputConfirm(value) {
+      // 将字符串分割为数组并去重复
+      let values = Array.from(new Set(value.split(',')));
+      let [handleData, hasedData] = [[],[]];
+      /**
+       * 匹配当前列表中resources字段是否已包含构造的数据。
+       */
+      values.forEach(e => {
+        if (this.item.resources.includes(e)) {
+          hasedData.push(e);
+          return
         }
-      })
+        if (e) handleData.push(e);
+      });
+      console.log('vals:::', handleData);
+      
+      if (handleData.length === 0) {
+        this.tipMsg = 'already exists';
+        return;
+      }
+
+      let message = 'add os success';
+      if (hasedData.length !== 0) {
+        message = `[${hasedData.join(',')}] already saved, others added`;
+      }
+      this.isInputPromp = false;
+      this.$toast.tip({message: message})
+      this.$store.commit('SET_AGENTS', {flag: 2, id: this.item.id, os: handleData});
     },
     // 删除resources字段中选中的os
     buttonIconClick(index) {

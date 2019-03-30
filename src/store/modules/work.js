@@ -14,6 +14,10 @@ const homeWork = {
           Vue.delete(state.agents[data.id].resources, data.index);
           break;
         }
+        case 2: {
+          state.agents[data.id].resources.unshift(...data.os);
+          break;
+        }
         default: {
           state.agents = data;
         }

@@ -25,10 +25,9 @@ export default {
     document.body.appendChild(this.$el);
   },
   mounted() {
-    console.log('show tip');
     setTimeout(() => {
       this.isTestToast = false;
-    }, 2000)
+    }, 3000)
   }
 }
 </script>

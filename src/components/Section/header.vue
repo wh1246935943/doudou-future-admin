@@ -17,7 +17,7 @@
           @click="openDropdown"
         >
           <div class="avatar"></div>
-          <i class="icon-angle-down"></i>
+          <i :class="isMenu?'icon-angle-up':'icon-angle-down'"></i>
         </div>
       </test-dropdown>
     </div>
