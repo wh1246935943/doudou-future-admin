@@ -18,7 +18,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import Header from './../Section/Header.vue';
-import TabList from './../Section/TabList';
+import TabList from './../Section/TabList.vue';
 import Footer from './../Section/Footer.vue';
 export default {
   components: {
