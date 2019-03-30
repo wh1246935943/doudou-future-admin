@@ -107,7 +107,6 @@ export default {
         return
       }
       let str = this.inputValue.replace(/^\s*|\s*$/g, '');
-      console.log('-----------', str);
       let reg = /[\s]/;
       if (reg.test(str)) {
         this.isWarning = true;

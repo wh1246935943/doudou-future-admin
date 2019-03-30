@@ -38,8 +38,8 @@ export default {
     openDropdown() {
       this.isMenu = !this.isMenu
     },
-    selectItem() { // item, index
-      // console.log('item:::index:::', item, index);
+    selectItem(item, index) {
+      console.log('item:::index:::', item, index);
     }
   }
 }
@@ -63,7 +63,7 @@ export default {
     .logo{
       width: 99px;
       height: 33px;
-      background: url('./../../assets/logo/logo.svg') no-repeat center / 99px 33px;
+      background: url('./../../assets/imgs/logo/logo.svg') no-repeat center / 99px 33px;
     }
     .user-entrance{
       display: flex;
@@ -74,7 +74,7 @@ export default {
         height: 40px;
         border-radius: 50%;
         overflow: hidden;
-        background: url('./../../assets/logo/avatar.jpg') no-repeat center / 40px 40px;
+        background: url('./../../assets/imgs/logo/avatar.jpg') no-repeat center / 40px 40px;
       }
       i{
         align-self: center;

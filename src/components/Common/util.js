@@ -1,9 +1,9 @@
 /** 获取osicon */
 let osIcons = {};
-const files = require.context('./../../assets/os_icon', false, /\.png$/);
+const files = require.context('./../../assets/imgs/os_icon', false, /\.png$/);
 
 files.keys().forEach(key => {
-  osIcons[key.replace(/(\.\/|\.png)/g, '')] = require(`./../../assets/os_icon${key.replace('.', '')}`)
+  osIcons[key.replace(/(\.\/|\.png)/g, '')] = require(`./../../assets/imgs/os_icon${key.replace('.', '')}`)
 });
 
 export function getOsIcon(os) {
