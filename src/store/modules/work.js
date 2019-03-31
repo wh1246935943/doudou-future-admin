@@ -15,7 +15,7 @@ const homeWork = {
           break;
         }
         case 2: {
-          state.agents[data.id].resources.unshift(...data.os);
+          state.agents[data.id].resources.unshift(...data.resource);
           break;
         }
         default: {

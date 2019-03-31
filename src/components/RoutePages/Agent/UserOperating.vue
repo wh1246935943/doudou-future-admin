@@ -2,13 +2,13 @@
   <div class="listitem-user-operating row">
     <div class="col-sm-10 col-xs-12">
       <div class="resources">
-        <div class="add-os">
+        <div class="add-resource">
           <test-dropdown
             :isInputPromp="isInputPromp"
             title="Separate muliple resource withcommas"
             placeholder="input value"
             buttonConfirmTxt="Add Resource"
-            className="add-os-prompt"
+            className="add-resource-prompt"
             :tipMsg="tipMsg"
             @close="isInputPromp = false"
             @dorpdown-inputpromp="dorpdownInputConfirm"
@@ -24,13 +24,13 @@
         <div class="os-list">
           <test-button
             class="os-button"
-            v-for="(os, index) in item.resources"
+            v-for="(item, index) in item.resources"
             :key="index"
             info
             iconAfter
             icon="icon-trash"
-            @icon-click="buttonIconClick(index)"
-          >{{os}}</test-button>
+            @icon-click="buttonIconClick(index, item)"
+          >{{item}}</test-button>
         </div>
       </div>
       
@@ -58,8 +58,8 @@ export default {
       let values = Array.from(new Set(value.split(',')));
       /**
        * 过滤用户输入内容并匹配当前列表中resources字段是否已包含构造的数据。
-       * handleData   : 过滤后最终提交接口的os集合
-       * hasedData    ：已经存在的os集合
+       * handleData   : 过滤后最终提交接口的resource集合
+       * hasedData    ：已经存在的resource集合
        * upperCaseStr : 将用户输入的每一个条目首字母转大写后的字符串
        */
       let [handleData, hasedData, upperCaseStr] = [[],[], ''];
@@ -78,18 +78,18 @@ export default {
         return;
       }
 
-      let message = 'add os success';
+      let message = 'add success';
       if (hasedData.length !== 0) {
         message = `[${hasedData.join(',')}] already saved, others added`;
       }
       this.isInputPromp = false;
       this.$toast.tip({message: message})
-      this.$store.commit('SET_AGENTS', {flag: 2, id: this.item.id, os: handleData});
+      this.$store.commit('SET_AGENTS', {flag: 2, id: this.item.id, resource: handleData});
     },
     // 删除resources字段中选中的os
-    buttonIconClick(index) {
+    buttonIconClick(index, item) {
       this.$alert.confirm({
-        confirmText: 'confirm delete?',
+        confirmText: `confirm delete ${item}?`,
         title: 'prompt',
         onConfirm: () => {
           this.$store.commit('SET_AGENTS', {flag: 1, id: this.item.id, index: index});
@@ -116,7 +116,7 @@ export default {
   .resources{
     display: flex;
     justify-content: flex-start;
-    .add-os{
+    .add-resource{
       width: 27px;
     }
     .os-list{
