@@ -1,27 +1,36 @@
 # home-work
 
-### 启动服务
-home-work > mock-server
-安装服务依赖：yarn
-启动服务：yarn json
+## 启动服务
+### 进入本地模拟服务文件夹
+```
+cd mock-server
+```
+### 安装模拟服务依赖
+```
+yarn
+```
+### 启动模拟服务
+```
+yarn json
+```
 
-### 启动项目
-## 安装项目依赖
+## 启动项目
+### 切换到home-work根目录安装项目依赖
 ```
 yarn
 ```
 
-## 启动开发环境
+### 启动开发环境
 ```
 yarn dev
 ```
 
-## 编译生产包
+### 编译生产包
 ```
 yarn dist
 ```
 
-## 项目文件说明
+### 项目文件说明
 
 ``` bash
 home-work/
