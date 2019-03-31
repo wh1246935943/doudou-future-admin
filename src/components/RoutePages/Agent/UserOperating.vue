@@ -74,10 +74,6 @@ export default {
         handleData.push(upperCaseStr);
       });
       
-      // if (handleData.length === 0) {
-      //   this.tipMsg = 'already exists';
-      //   return;
-      // }
       deepCopyItem.resources.unshift(...handleData);
       this.updataAgent(deepCopyItem, hasedData, 1);
     },
@@ -106,7 +102,11 @@ export default {
     },
 
     /**
-     * 更新updataAgent
+     * 更新agent.resources字段
+     * @param { Boolean } newAgent    - resources数据组装后完整的agent对象
+     *                                  调用设置接口传入的完整对象
+     * @param { String }  hasedData   - 已存的数据集合
+     * @param { Number }  flag        - 0: 删除， 1：添加
      */
     updataAgent(newAgent, hasedData, flag) {
       let param = {
@@ -125,6 +125,7 @@ export default {
 
           this.isInputPromp = false;
           this.$toast.tip({message: message});
+          // 更新vuex数据
           this.$store.commit('SET_AGENTS', {flag: 1, id: this.item.id, resource: newAgent.resources});
         }
       )

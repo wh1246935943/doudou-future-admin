@@ -7,7 +7,7 @@
         v-for="(item, index) in typeList"
         :key="index"
         :class="{'active-border':activeIndex === index}"
-        @click="switchType(index)"
+        @click="switchType(index, item)"
       >{{item}}</div>
     </div>
     <div class="search-padding col-sm-7 col-xs-12">
@@ -15,7 +15,10 @@
       <div class="search-box">
         <div class="search-input">
           <i class="icon-search"></i>
-          <input type="text">
+          <input
+            v-model="keyWords"
+            type="text"
+          >
         </div>
         <!-- 切换列表视图样式按钮 -->
         <div class="switch-view">
@@ -31,12 +34,14 @@ export default {
   data() {
     return {
       activeIndex: 0,
+      keyWords: '',
       typeList: ['ALL', 'PHYSICAL', 'VIRTUAL']
     }
   },
   methods: {
-    switchType(index) {
+    switchType(index, type) {
       this.activeIndex = index;
+      this.$emit('switch-agentType', type.toLowerCase())
     }
   }
 }
