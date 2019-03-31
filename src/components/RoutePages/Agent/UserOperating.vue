@@ -56,18 +56,22 @@ export default {
     dorpdownInputConfirm(value) {
       // 将字符串分割为数组并去重复
       let values = Array.from(new Set(value.split(',')));
-      let [handleData, hasedData] = [[],[]];
       /**
-       * 匹配当前列表中resources字段是否已包含构造的数据。
+       * 过滤用户输入内容并匹配当前列表中resources字段是否已包含构造的数据。
+       * handleData   : 过滤后最终提交接口的os集合
+       * hasedData    ：已经存在的os集合
+       * upperCaseStr : 将用户输入的每一个条目首字母转大写后的字符串
        */
+      let [handleData, hasedData, upperCaseStr] = [[],[], ''];
       values.forEach(e => {
-        if (this.item.resources.includes(e)) {
-          hasedData.push(e);
+        if (!e) return;
+        upperCaseStr = e.replace(e[0],e[0].toUpperCase());
+        if (this.item.resources.includes(upperCaseStr)) {
+          hasedData.push(upperCaseStr);
           return
         }
-        if (e) handleData.push(e);
+        handleData.push(upperCaseStr);
       });
-      console.log('vals:::', handleData);
       
       if (handleData.length === 0) {
         this.tipMsg = 'already exists';
