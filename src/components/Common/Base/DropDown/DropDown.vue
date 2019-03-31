@@ -41,7 +41,7 @@
           @click.stop="[tipMsgDisplay='',isWarning&&(isWarning=false)]"
           @input="[tipMsgDisplay='',isWarning&&(isWarning=false)]"
         >
-        <div v-if="tipMsgDisplay" class="tip-message">*{{tipMsgDisplay}}</div>
+        <div class="tip-message">{{tipMsgDisplay}}</div>
       </section>
       <footer class="dropdown-inputpromp-footer">
         <test-button primary @click="confirm">{{buttonConfirmTxt}}</test-button>
@@ -86,14 +86,16 @@ export default {
       type: String,
       default: 'Cancel'
     },
-    tipMsg: {
-      type: String,
-      default: ''
+    data: {
+      type: Array,
+      default: () => {
+        return []
+      }
     }
   },
   watch: {
-    tipMsg(val) {
-      this.tipMsgDisplay = val;
+    isInputPromp() {
+      this.inputValue = '';
     }
   },
   methods: {
@@ -106,6 +108,10 @@ export default {
         this.isWarning = true;
         return
       }
+      if (this.data.includes(this.inputValue)) {
+        this.tipMsgDisplay = 'already exists';
+        return;
+      }
       let str = this.inputValue.replace(/^\s*|\s*$/g, '');
       let reg = /[\s]/;
       if (reg.test(str)) {
@@ -113,11 +119,11 @@ export default {
         return
       }
       this.$emit('dorpdown-inputpromp', str);
-      this.inputValue = '';
     },
     close() {
       this.inputValue = '';
       this.isWarning = false;
+      this.tipMsgDisplay = ''
       this.$emit('close');
     }
   }
@@ -226,6 +232,7 @@ export default {
       .tip-message{
         color: #f56c6c;
         font-size: 12px;
+        height: 14px;
       }
     }
     .dropdown-inputpromp-footer{

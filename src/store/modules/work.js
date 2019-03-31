@@ -11,11 +11,7 @@ const homeWork = {
           break;
         }
         case 1: {
-          Vue.delete(state.agents[data.id].resources, data.index);
-          break;
-        }
-        case 2: {
-          state.agents[data.id].resources.unshift(...data.resource);
+          state.agents[data.id].resources = data.resource;
           break;
         }
         default: {

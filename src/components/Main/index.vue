@@ -53,13 +53,13 @@ export default {
       } 
     },
     getAgents() {
-      this.$Service.queryAgents(null, this._queryAgentHandler)
+      this.$Service.getAgents(this._getAgentsHandler)
     },
-    _queryAgentHandler(resp) {
-      console.log('queryAgent callback:::', resp);
+    _getAgentsHandler(resp) {
+      console.log('getAgents callback:::', resp);
       if (resp.status !== 200) return;
       let agentsObg = {};
-      resp.data.agents.forEach(element => {
+      resp.data.forEach(element => {
         this.$set(agentsObg, element.id, element);
       });
       this.$store.commit('SET_AGENTS', agentsObg)

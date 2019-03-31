@@ -9,7 +9,7 @@
             placeholder="input value"
             buttonConfirmTxt="Add Resource"
             className="add-resource-prompt"
-            :tipMsg="tipMsg"
+            :data="item.resources"
             @close="isInputPromp = false"
             @dorpdown-inputpromp="dorpdownInputConfirm"
           >
@@ -54,6 +54,7 @@ export default {
   methods: {
     // resources字段中添加os
     dorpdownInputConfirm(value) {
+      let deepCopyItem = JSON.parse(JSON.stringify(this.item));
       // 将字符串分割为数组并去重复
       let values = Array.from(new Set(value.split(',')));
       /**
@@ -62,29 +63,23 @@ export default {
        * hasedData    ：已经存在的resource集合
        * upperCaseStr : 将用户输入的每一个条目首字母转大写后的字符串
        */
-      let [handleData, hasedData, upperCaseStr] = [[],[], ''];
+      let [handleData, hasedData, upperCaseStr] = [[], [], ''];
       values.forEach(e => {
         if (!e) return;
         upperCaseStr = e.replace(e[0],e[0].toUpperCase());
-        if (this.item.resources.includes(upperCaseStr)) {
+        if (deepCopyItem.resources.includes(upperCaseStr)) {
           hasedData.push(upperCaseStr);
           return
         }
         handleData.push(upperCaseStr);
       });
       
-      if (handleData.length === 0) {
-        this.tipMsg = 'already exists';
-        return;
-      }
-
-      let message = 'add success';
-      if (hasedData.length !== 0) {
-        message = `[${hasedData.join(',')}] already saved, others added`;
-      }
-      this.isInputPromp = false;
-      this.$toast.tip({message: message})
-      this.$store.commit('SET_AGENTS', {flag: 2, id: this.item.id, resource: handleData});
+      // if (handleData.length === 0) {
+      //   this.tipMsg = 'already exists';
+      //   return;
+      // }
+      deepCopyItem.resources.unshift(...handleData);
+      this.updataAgent(deepCopyItem, hasedData, 1);
     },
     // 删除resources字段中选中的os
     buttonIconClick(index, item) {
@@ -92,8 +87,9 @@ export default {
         confirmText: `confirm delete ${item}?`,
         title: 'prompt',
         onConfirm: () => {
-          this.$store.commit('SET_AGENTS', {flag: 1, id: this.item.id, index: index});
-          this.$toast.tip({message: 'delete success'})
+          let deepCopyItem = JSON.parse(JSON.stringify(this.item));
+          this.$delete(deepCopyItem.resources, index);
+          this.updataAgent(deepCopyItem, [], 0)
         }
       })
     },
@@ -107,6 +103,31 @@ export default {
           this.$toast.tip({message: 'deny success'})
         }
       })
+    },
+
+    /**
+     * 更新updataAgent
+     */
+    updataAgent(newAgent, hasedData, flag) {
+      let param = {
+        id: newAgent.id,
+        body: newAgent
+      }
+      console.log('resources入参:::', param);
+      this.$Service.updataAgent(
+        param,
+        resp => {
+          console.log('updataAgent callback:::', resp);
+          if (resp.status !== 200) return;
+
+          let message = flag? 'add success' : 'delete success';
+          if (hasedData.length !== 0) message = `[${hasedData.join(',')}] already saved, others added`;
+
+          this.isInputPromp = false;
+          this.$toast.tip({message: message});
+          this.$store.commit('SET_AGENTS', {flag: 1, id: this.item.id, resource: newAgent.resources});
+        }
+      )
     }
   }
 }
