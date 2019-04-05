@@ -103,9 +103,9 @@ export default {
 
     /**
      * 更新agent.resources字段
-     * @param { Boolean } newAgent    - resources数据组装后完整的agent对象
+     * @param { Array } newAgent    - resources数据组装后完整的agent对象
      *                                  调用设置接口传入的完整对象
-     * @param { String }  hasedData   - 已存的数据集合
+     * @param { Array }  hasedData   - 已存的数据集合
      * @param { Number }  flag        - 0: 删除， 1：添加
      */
     updataAgent(newAgent, hasedData, flag) {

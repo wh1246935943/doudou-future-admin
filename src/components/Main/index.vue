@@ -50,7 +50,7 @@ export default {
       window.onresize = () => {
         el.style.display = '';
         window.onresize = null
-      } 
+      }
     },
     getAgents() {
       this.$Service.getAgents(this._getAgentsHandler)
@@ -58,11 +58,11 @@ export default {
     _getAgentsHandler(resp) {
       console.log('getAgents callback:::', resp);
       if (resp.status !== 200) return;
-      let agentsObg = {};
+      let agentsObj = {};
       resp.data.forEach(element => {
-        this.$set(agentsObg, element.id, element);
+        this.$set(agentsObj, element.id, element);
       });
-      this.$store.commit('SET_AGENTS', agentsObg)
+      this.$store.commit('SET_AGENTS', agentsObj)
     }
   }
 }
