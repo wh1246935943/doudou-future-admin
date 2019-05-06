@@ -15,10 +15,11 @@
       <div class="search-box">
         <div class="search-input">
           <i class="icon-search"></i>
-          <input
+          <!-- <input
             v-model="keyWords"
             type="text"
-          >
+          > -->
+          <w-input v-model="keyWords"></w-input>
         </div>
         <!-- 切换列表视图样式按钮 -->
         <div class="switch-view">
@@ -36,6 +37,11 @@ export default {
       activeIndex: 0,
       keyWords: '',
       typeList: ['ALL', 'PHYSICAL', 'VIRTUAL']
+    }
+  },
+  watch: {
+    keyWords(val) {
+      console.log('keyWords:::', this.keyWords);
     }
   },
   methods: {

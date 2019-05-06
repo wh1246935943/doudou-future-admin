@@ -72,13 +72,22 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     color: #fff;
+    &:hover{
+      .icon-cog{
+        transform: rotate(360deg);
+        transition: transform 2s;
+        transform-origin: center center;
+        // animation: iconRotate 3s linear infinite;
+      }
+    }
     .bg-icon{
       position: absolute;
-      top: -9px;
+      top: 50%;
+      left: 50%;
       font-size: 144px;
       opacity: 0.2;
-      left: 50%;
-      transform: translateX(-50%);
+      margin-top: -72px;
+      margin-left: -72px;
     }
     .name{
       font-size: 18px;

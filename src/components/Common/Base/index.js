@@ -3,11 +3,13 @@ import TestToast from './Toast';
 import Modal from './modal';
 import TestDropdown from './DropDown';
 import TestButton from './Button';
+import WInput from './Input'
 
 const baseUi = {
   Modal,
   TestDropdown,
-  TestButton
+  TestButton,
+  WInput
 };
 
 baseUi.install = (Vue) => {

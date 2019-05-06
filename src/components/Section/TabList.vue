@@ -15,10 +15,13 @@
         </li>
       </ul>
     </div>
+    <History></History>
   </div>
 </template>
 <script>
+import History from './History.vue'
 export default {
+  components: {History},
   data() {
     return {
       activeIndex: 1,
